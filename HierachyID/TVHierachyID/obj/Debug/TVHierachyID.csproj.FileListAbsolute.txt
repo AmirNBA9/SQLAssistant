@@ -1,0 +1,4 @@
+C:\Users\userd1\Downloads\TVHierachyID\TVHierachyID\obj\Debug\TVHierachyID.csprojAssemblyReference.cache
+C:\Users\userd1\Downloads\TVHierachyID\TVHierachyID\obj\Debug\TVHierachyID.Form1.resources
+C:\Users\userd1\Downloads\TVHierachyID\TVHierachyID\obj\Debug\TVHierachyID.Properties.Resources.resources
+C:\Users\userd1\Downloads\TVHierachyID\TVHierachyID\obj\Debug\TVHierachyID.csproj.GenerateResource.cache
