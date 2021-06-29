@@ -1,5 +1,5 @@
 # SQLAssistant
-This is a assistant sql server developer for find best script for develop, implement, In-Memory models, performance and tuning database
+This is a assistant sql server developer for find best script for develop, Design, implement, In-Memory OLTP models, performance and tuning database
 
 If you want seprate this project by type of scripts result is like below :
 
