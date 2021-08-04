@@ -1,0 +1,1 @@
+netsh int ip set address "Local Area Connection" address=192.168.1.187 mask=255.255.255.0 gateway=192.168.1.188
