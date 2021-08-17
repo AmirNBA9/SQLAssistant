@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CLR_Cat2", "CLR_Cat2\CLR_Cat2.sqlproj", "{8EA86D44-A6F6-496D-969F-A08C6EF8231C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA86D44-A6F6-496D-969F-A08C6EF8231C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05FDFE4E-4C8E-434A-988D-FB1AFF2B54A0}
+	EndGlobalSection
+EndGlobal

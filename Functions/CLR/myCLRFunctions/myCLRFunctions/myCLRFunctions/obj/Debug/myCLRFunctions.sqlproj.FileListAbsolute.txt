@@ -1,0 +1,9 @@
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\bin\Debug\myCLRFunctions.dacpac
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\bin\Debug\myCLRFunctions.dll
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\bin\Debug\myCLRFunctions.pdb
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\myCLRFunctions.dll
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\myCLRFunctions.pdb
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\Model.xml
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\refactor.xml
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\postdeploy.sql
+C:\TSQL-971029\Session 11\myCLRFunctions\myCLRFunctions\obj\Debug\predeploy.sql
