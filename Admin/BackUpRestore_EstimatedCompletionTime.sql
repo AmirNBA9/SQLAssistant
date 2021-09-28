@@ -1,4 +1,4 @@
--- Find how much time elapse Backup etimate to finish or restore estimate to finish
+-- Find how much time elapse Backup etimate to finish or restore estimated completion_time
 SELECT  r.session_id, CONVERT (NVARCHAR(255), DB_NAME (r.database_id)) AS [DATABASE], a.text AS Query, --
     CASE r.command
         WHEN 'BACKUP DATABASE'
