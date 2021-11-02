@@ -1,0 +1,58 @@
+--1 (Default measure, is first masure of fact, we can change default)
+Select
+From [Loyalty DW-PointTransaction]
+
+GO
+--2 ON COLUMNS
+SELECT [Measures].[Amount] ON Columns
+FROM [Loyalty DW-PointTransaction]
+
+GO
+--3 ON COLUMNS by more than one measure
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS
+FROM [Loyalty DW-PointTransaction]
+
+GO
+--4 ROWS by a attribute (1 Level hierarchy)
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+	[Point Transaction Type].[Point Transaction Type Surrogate Id] ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--4.1 ROWS by a attribute (with members)
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+	[Point Transaction Type].[Point Transaction Type Surrogate Id].members ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--5 ROWS by a attribute (with members) - Romve empty
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Point Transaction Type].[Point Transaction Type Surrogate Id].members ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--6 Chabge dim drillthright
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Created Date Surrogate].[Calender].members ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--7 Romve member all
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Point Transaction Type].[Point Transaction Type Surrogate Id].members - [Point Transaction Type].[Point Transaction Type Surrogate Id].[All] ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--8 Childern of member all 
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Point Transaction Type].[Point Transaction Type Surrogate Id].[All].Children ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--9 Use a member
+
+--10
+
+--11 On rows with level - [Dimension].[Hierarchy].[Level Name]
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Created Date Surrogate].[SmallCalender].[Persian Year] ON ROWS
+FROM [Loyalty DW-PointTransaction]
+
+--12
+SELECT {[Measures].[Amount],[Measures].[Balance]} ON COLUMNS,
+NON EMPTY	[Club].[Club Surrogate Id].[Club Surrogate Id] ON ROWS
+FROM [Loyalty DW-PointTransaction]

@@ -1,0 +1,7 @@
+NonEmpty (
+[Club].[Club Id].[Club Id].Members,
+(
+StrToMember ("[Users].[User Name].&[" + UserName () + "]"),
+[Measures].[User Permission Count]
+)
+)
