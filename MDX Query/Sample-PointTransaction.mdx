@@ -1,0 +1,244 @@
+﻿--1 Defualt measure
+Select 
+From [PointTransaction]
+-- [Measures].[Point Transaction Count]
+GO -- for first query with error it's bug for 
+
+--2 Select custome measure
+SELECT [Measures].[Balance] ON COLUMNS
+FROM [PointTransaction]
+
+--3 When members of hierarchy select in query, should be use {}
+SELECT {[Measures].[Balance],[Measures].[Amount]} ON COLUMNS
+FROM [PointTransaction]
+
+--4 ON ROWS with memners
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+[Date].[Year].Members ON ROWS
+FROM [PointTransaction]
+
+--5 dont show empties
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY [Date].[Year].Members ON ROWS
+FROM [PointTransaction]
+
+--5.1 dont show empties
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[Year].Members ) ON ROWS
+FROM [PointTransaction]
+
+--6 Defualt member is all rows
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[Year] ) ON ROWS
+FROM [PointTransaction]
+
+--7 no need member-all ver 01
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[Year].members - [Date].[Year].[ALL]) ON ROWS
+FROM [PointTransaction]
+
+--8 no need member-all ver 02
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[Year].Children ) ON ROWS
+FROM [PointTransaction]
+
+--9 Wrong
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[Year].&[1396].Children ) ON ROWS
+FROM [PointTransaction] 
+
+--10
+-- [Dimension].[Attribute Hirarchy].&[MemberKey]
+-- [Dimension].[Attribute Hirarchy].[MemberName]
+
+-- [Dimension].[User Defined Hirarchy].[Level Name].&[MemberKey]
+-- [Dimension].[User Defined Hirarchy].[Level Name].[MemberName] 
+
+-- 10
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NONEMPTY( [Date].[FullDate].[Persian Year].&[1396].Children ) ON ROWS
+FROM [PointTransaction] 
+
+-- 11 no need member-all ver 03
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY [Date].[Year].[Year] ON ROWS
+FROM [PointTransaction]
+
+-- [Dimension].[Hirarchy].[Level Name]
+
+--12,13,14 Examples in class
+
+--15
+-- no diffrent between rows and columns
+SELECT NON EMPTY [Date].[Year].[Year] ON Columns,
+{[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON Rows
+FROM [PointTransaction]
+
+--16 ON Columns = 0 and ON Rows = 1
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON 0,
+NON EMPTY [Date].[Year].[Year] ON 1
+FROM [PointTransaction]
+
+--17 We can use 3dim but sql can't preview - We can use subcub
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON 0,
+NON EMPTY [Date].[Year].[Year] ON 1
+NON EMPTY [Point Type].[Point Type Surrogate Id] ON 2
+FROM [PointTransaction]
+
+--18 no need a club - استخر باربد
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY [Club].[Club].[Club] - [Club].[Club].&[738] ON ROWS
+FROM [PointTransaction]
+
+--19 Select clubs 10100,10114,10262
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY {[Club].[Club Id].&[10100],[Club].[Club Id].&[10114],[Club].[Club Id].&[10262]} ON ROWS
+FROM [PointTransaction]
+
+--20  between 10100 - 10200 and 10262
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY {[Club].[Club Id].&[10100] : [Club].[Club Id].&[10200] + [Club].[Club Id].&[10262]} ON ROWS
+FROM [PointTransaction]
+
+--21  between 10100 - 10300 whit out 10262
+SELECT {[Measures].[Balance],[Measures].[Amount],[Measures].[Point Transaction Count]} ON COLUMNS,
+NON EMPTY {[Club].[Club Id].&[10100] : [Club].[Club Id].&[10300] - [Club].[Club Id].&[10262]} ON ROWS
+FROM [PointTransaction]
+
+--22 Worng - we can't use aggregate for diffrent dimensions
+
+--24
+
+--25 Two hierarchy should b in ()
+SELECT ( NONEMPTY( [Date].[Year].[Year]) ,{[Measures].[Point Transaction Count]}) ON 0,
+NON EMPTY [Club].[Club].[Club] ON 1
+FROM [PointTransaction]
+
+--26
+SELECT ( NONEMPTY( [Date].[Year].[Year]) ,{[Measures].[Point Transaction Count],[Measures].[Balance]}) ON 0,
+NON EMPTY [Club].[Club].[Club] ON 1
+FROM [PointTransaction]
+
+--27
+SELECT NONEMPTY( [Date].[Year].[Year]) ON 0,
+NON EMPTY ([Club].[Club].[Club],{[Measures].[Balance],[Measures].[Point Transaction Count]}) ON 1
+FROM [PointTransaction]
+
+--28 We can use one measure before where - and don't show measure lable
+SELECT NONEMPTY( [Date].[Year].[Year]) ON 0,
+NON EMPTY [Club].[Club].[Club] ON 1
+FROM [PointTransaction]
+Where [Measures].[Balance]
+
+--29 WRONG: The set in the WHERE clause cannot contain multiple measures.
+SELECT NONEMPTY( [Date].[Year].[Year]) ON 0,
+NON EMPTY [Club].[Club].[Club] ON 1
+FROM [PointTransaction]
+Where {[Measures].[Balance],[Measures].[Amount]}
+
+--30
+SELECT NONEMPTY( [Date].[DayOfMonth].[DayOfMonth].members) ON 0,
+NON EMPTY [Club].[Club].[Club].members ON 1
+FROM [PointTransaction]
+Where [Measures].[Balance]
+
+--32 with grand total
+SELECT NONEMPTY( [Date].[DayOfMonth].members) ON 0,
+NONEMPTY( [Club].[Club].members) ON 1
+FROM [PointTransaction]
+WHERE {[Measures].[Amount]}
+
+--33
+SELECT NONEMPTY( [Point Type].[Point Type Surrogate Id].members) ON 0,
+NON EMPTY ( [Club].[Club].Members,[Date].[DayOfMonth].[DayOfMonth]) ON 1
+FROM [PointTransaction]
+WHERE {[Measures].[Amount]}
+
+GO
+--34
+SELECT NON EMPTY {[Measures].[Point Transaction Count]} ON 0,
+NON EMPTY ( [Point Type].[Point Type Surrogate Id].members) ON 1
+FROM [PointTransaction]
+WHERE ([Club].[Club Id].&[10100] ,[Date].[DayOfMonth].&[15]) 
+
+--35
+SELECT NON EMPTY {[Measures].[Point Transaction Count]} ON 0,
+NON EMPTY ( [Point Type].[Point Type Surrogate Id].members) ON 1
+FROM [PointTransaction] 
+WHERE ([Club].[Club Id].&[10100] )
+
+--36
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY {[Measures].[Amount]} ON 1
+FROM [PointTransaction]
+WHERE ([Club].[Club Id].&[10100] )
+GO
+--37
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY {[Measures].[Amount]} ON 1
+FROM [PointTransaction]
+WHERE ([Club].[Club Id].&[10100], {[Loyalty Account].[Owner Club Surrogate Id].members - [Loyalty Account].[Owner Club Surrogate Id].&[null]} )
+
+--38
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY {[Measures].[Amount]} ON 1
+FROM [PointTransaction]
+WHERE ([Club].[Club Id].&[10100]:[Club].[Club Id].&[10300] )
+
+--41
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY {[Measures].[Amount]} ON 1
+FROM [PointTransaction]
+WHERE ( {[Club].[Club Id].&[10100]}*{[Point Type].[Point Type Surrogate Id].[Point Type Surrogate Id]} )
+
+--42
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY CROSSJOIN ( {[Point Type].[Point Type Surrogate Id].[Point Type Surrogate Id]},{[Measures].[Amount]}) ON 1
+FROM [PointTransaction]
+WHERE ([Club].[Club Id].&[10100]:[Club].[Club Id].&[10300])
+
+-- CROSSJOIN,TOUPLE and * is equal
+
+--43 use filter for measures
+SELECT NON EMPTY [Measures].[Amount] ON 0,
+NON EMPTY FILTER([Club].[Club].[Club], [Measures].[Amount] > -600000) ON 1
+FROM [PointTransaction]
+
+--44-45 redundant
+--46 EXISTS 01
+SELECT NON EMPTY ([Date].[DayOfMonth].[DayOfMonth] ) ON 0,
+NON EMPTY EXISTS([Club].[Club Id].&[10100] ) ON 1
+FROM [PointTransaction]
+WHERE {[Measures].[Amount]}
+
+--47 EXISTS 02
+SELECT NON EMPTY [Measures].[Amount] ON 0,
+NON EMPTY EXISTS([Date].[DayOfMonth].[DayOfMonth],[Club].[Club Id].&[10100] ,"Point Transaction") ON 1
+FROM [PointTransaction]
+where [Club].[Club Id].&[10100]
+
+--50 Orderby
+SELECT NONEMPTY( [Measures].[Amount]) ON 0,
+NON EMPTY Order( [Club].[Club].members, [Measures].[Amount] , ASC) ON 1
+FROM [PointTransaction]
+
+--51
+SELECT NON EMPTY [Measures].[Amount] ON 0,
+NON EMPTY ORDER(FILTER([Club].[Club].[Club], [Measures].[Amount] > -600000), [Measures].[Amount] , DESC) ON 1
+FROM [PointTransaction]
+
+--52 Order with hierarchy
+SELECT NON EMPTY [Measures].[Amount] ON 0,
+NON EMPTY ORDER([Receiver Loyalty Account Id Surrogate].[Brand Club Surrogate Id],[Measures].[Amount] , DESC) ON 1
+FROM [PointTransaction]
+
+--53 Orderbey
+SELECT NON EMPTY [Measures].[Balance] ON 0,
+NON EMPTY ORDER([Date].[FullDate].[DayOfMonth], [Measures].[Balance] , BDESC) ON 1
+FROM [PointTransaction]
+
+GO
+--54
+SELECT NON EMPTY [Measures].[Balance] ON 0,
+NON EMPTY ORDER([Date].[FullDate].[DayOfMonth], [Measures].[Balance] , DESC) ON 1
+FROM [PointTransaction]
