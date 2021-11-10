@@ -242,3 +242,10 @@ GO
 SELECT NON EMPTY [Measures].[Balance] ON 0,
 NON EMPTY ORDER([Date].[FullDate].[DayOfMonth], [Measures].[Balance] , DESC) ON 1
 FROM [PointTransaction]
+
+
+--
+SELECT [Measures].[Amount] ON 0,
+PERIODSTODATE([Date].[Date].[Date],[Date].[Date].CURRENTMEMBER)  ON 1
+FROM [PointTransaction]
+
