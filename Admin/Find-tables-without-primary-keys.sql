@@ -1,14 +1,10 @@
 --------------------------------------------------------------------
-/*
- یافتن جداول فاقد PrimaryKey
-*/
+/*Find tables without PrimaryKey*/
 --------------------------------------------------------------------
-select schema_name(tab.schema_id) as [schema_name],
-tab.[name] as table_name
-from sys.tables tab
-left outer join sys.indexes pk
-on tab.object_id = pk.object_id
-and pk.is_primary_key = 1
-where pk.object_id is null
-order by schema_name(tab.schema_id),
-tab.[name]
+SELECT
+	SCHEMA_NAME(tab.schema_id) AS [schema_name]
+   ,tab.[Name] AS table_name
+FROM sys.tables tab
+	LEFT OUTER JOIN sys.indexes pk ON tab.object_id = pk.object_id AND pk.is_primary_key = 1
+WHERE pk.object_id IS NULL
+ORDER BY schema_name(tab.schema_id),tab.[Name]

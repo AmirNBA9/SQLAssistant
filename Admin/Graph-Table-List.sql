@@ -1,13 +1,16 @@
 ﻿--------------------------------------------------------------------
 /*
-
+List of graph table
 */
 --------------------------------------------------------------------
-select case when is_node = 1 then 'Node'
-when is_edge = 1 then 'Edge'
-end table_type,
-schema_name(schema_id) as schema_name,
-name as table_name
-from sys.tables
-where is_node = 1 or is_edge = 1
-order by is_edge, schema_name, table_name
+SELECT
+	CASE
+		WHEN is_node = 1 THEN 'Node'
+		WHEN is_edge = 1 THEN 'Edge'
+	END table_type
+   ,SCHEMA_NAME(schema_id) AS schema_name
+   ,Name AS table_name
+FROM sys.tables
+WHERE is_node = 1
+	OR is_edge = 1 
+ORDER BY is_edge, schema_name, table_name

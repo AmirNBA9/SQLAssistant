@@ -1,3 +1,7 @@
- declare @Concepts varchar(500)
- set @Concepts = '{"Concepts":[1,2,3,4]}';
- select [key],[value] from openjson(@Concepts,'$.Concepts')
+DECLARE @Concepts VARCHAR(500)
+SET @Concepts = '{"Concepts":[null,12345,"test value",true]}';
+SELECT
+	[key]
+   ,[value]
+   ,[type]
+FROM OPENJSON(@Concepts, '$.Concepts')

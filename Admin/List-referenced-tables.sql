@@ -7,12 +7,12 @@ References: تعداد Foreign keyهایی که به این جدول ارجاع 
 Referencing_tables: تعداد جداول متمایزی که به این جدول ارجاع داده اند .گاهی اوقات ممکن است یک جدول از طریق چندین فیلد به یک جدول ارجاع داده شود, مانند جدول DimDate در DatawareHouseها
 */
 --------------------------------------------------------------------
-select schema_name(tab.schema_id) + '.' + tab.name as [table],
-count(fk.name) as [references],
-count(distinct fk.parent_object_id) as referencing_tables
-from sys.tables as tab
-left join sys.foreign_keys as fk
-on tab.object_id = fk.referenced_object_id
-group by schema_name(tab.schema_id), tab.name
-having count(fk.name) <> 0
-order by 2 desc
+SELECT
+	SCHEMA_NAME(tab.schema_id) + '.' + tab.Name AS [table]
+   ,COUNT(fk.Name) AS [references]
+   ,COUNT(DISTINCT fk.parent_object_id) AS referencing_tables
+FROM sys.tables AS tab
+	LEFT JOIN sys.foreign_keys AS fk ON tab.object_id = fk.referenced_object_id
+GROUP BY SCHEMA_NAME(tab.schema_id) ,tab.Name
+HAVING COUNT(fk.Name) <> 0
+ORDER BY 2 DESC
