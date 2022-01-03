@@ -3,19 +3,19 @@
 لیست ستون های Non Nullable جداول یک دیتابیس
 */
 --------------------------------------------------------------------
-select schema_name(tab.schema_id) as schema_name,
-tab.name as table_name,
-col.column_id,
-col.name as column_name,
-t.name as data_type,
-col.max_length,
-col.precision
-from sys.tables as tab
-inner join sys.columns as col
-on tab.object_id = col.object_id
-left join sys.types as t
-on col.user_type_id = t.user_type_id
-where col.is_nullable = 0
-order by schema_name,
-table_name,
-column_name;
+SELECT SCHEMA_NAME(tab.schema_id) AS schema_name,
+       tab.name AS table_name,
+       col.column_id,
+       col.name AS column_name,
+       t.name AS data_type,
+       col.max_length,
+       col.precision
+FROM sys.tables AS tab
+    INNER JOIN sys.columns AS col
+        ON tab.object_id = col.object_id
+    LEFT JOIN sys.types AS t
+        ON col.user_type_id = t.user_type_id
+WHERE col.is_nullable = 0
+ORDER BY schema_name,
+         table_name,
+         column_name;

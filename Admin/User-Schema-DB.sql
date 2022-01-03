@@ -5,11 +5,11 @@ Schema_id :Id مربوط به شِما. این شماره در هر Instance ,Un
 Schema_owner: نام شِمای مالک ؟؟؟؟؟
 */
 --------------------------------------------------------------------
-select s.name as schema_name, 
-    s.schema_id,
-    u.name as schema_owner
-from sys.schemas s
-    inner join sys.sysusers u
-        on u.uid = s.principal_id
-where u.issqluser = 1
-    and u.name not in ('sys', 'guest', 'INFORMATION_SCHEMA')
+SELECT s.name AS schema_name,
+       s.schema_id,
+       u.name AS schema_owner
+FROM sys.schemas s
+    INNER JOIN sys.sysusers u
+        ON u.uid = s.principal_id
+WHERE u.issqluser = 1
+      AND u.name NOT IN ( 'sys', 'guest', 'INFORMATION_SCHEMA' );

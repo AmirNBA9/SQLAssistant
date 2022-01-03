@@ -7,22 +7,39 @@ Loner_Tables: تعداد Loner_Tablesهای دیتابیس
 Loner_Ratio: نسبت جداول Loner به کل جداول
 */
 --------------------------------------------------------------------
-select count(*) [table_count],
-sum(case when fks.cnt + refs.cnt = 0 then 1 else 0 end)
-as [loner_tables],
-cast(cast(100.0 * sum(case when fks.cnt + refs.cnt = 0 then 1 else 0 end)
-/ count(*) as decimal(36, 1)) as varchar) + '%' as [loner_ratio]
-from (select schema_name(tab.schema_id) + '.' + tab.name as tab,
-count(fk.name) cnt
-from sys.tables as tab
-left join sys.foreign_keys as fk
-on tab.object_id = fk.parent_object_id
-group by schema_name(tab.schema_id), tab.name) fks
-inner join
-(select schema_name(tab.schema_id) + '.' + tab.name as tab,
-count(fk.name) cnt
-from sys.tables as tab
-left join sys.foreign_keys as fk
-on tab.object_id = fk.referenced_object_id
-group by schema_name(tab.schema_id), tab.name) refs
-on fks.tab = refs.tab
+SELECT COUNT(*) [table_count],
+       SUM(   CASE
+                  WHEN fks.cnt + refs.cnt = 0 THEN
+                      1
+                  ELSE
+                      0
+              END
+          ) AS [loner_tables],
+       CAST(CAST(100.0 * SUM(   CASE
+                                    WHEN fks.cnt + refs.cnt = 0 THEN
+                                        1
+                                    ELSE
+                                        0
+                                END
+                            ) / COUNT(*) AS DECIMAL(36, 1)) AS VARCHAR) + '%' AS [loner_ratio]
+FROM
+(
+    SELECT SCHEMA_NAME(tab.schema_id) + '.' + tab.name AS tab,
+           COUNT(fk.name) cnt
+    FROM sys.tables AS tab
+        LEFT JOIN sys.foreign_keys AS fk
+            ON tab.object_id = fk.parent_object_id
+    GROUP BY SCHEMA_NAME(tab.schema_id),
+             tab.name
+) fks
+    INNER JOIN
+    (
+        SELECT SCHEMA_NAME(tab.schema_id) + '.' + tab.name AS tab,
+               COUNT(fk.name) cnt
+        FROM sys.tables AS tab
+            LEFT JOIN sys.foreign_keys AS fk
+                ON tab.object_id = fk.referenced_object_id
+        GROUP BY SCHEMA_NAME(tab.schema_id),
+                 tab.name
+    ) refs
+        ON fks.tab = refs.tab;

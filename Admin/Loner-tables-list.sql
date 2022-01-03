@@ -3,22 +3,28 @@
 لیست جداول بدون ارتباط Loner Tables
 */
 --------------------------------------------------------------------
-select 'No FKs >-' refs,
-fks.tab as [table],
-'>- no FKs' fks
-from
-(select schema_name(tab.schema_id) + '.' + tab.name as tab,
-count(fk.name) as fk_cnt
-from sys.tables as tab
-left join sys.foreign_keys as fk
-on tab.object_id = fk.parent_object_id
-group by schema_name(tab.schema_id), tab.name) fks
-inner join
-(select schema_name(tab.schema_id) + '.' + tab.name as tab,
-count(fk.name) ref_cnt
-from sys.tables as tab
-left join sys.foreign_keys as fk
-on tab.object_id = fk.referenced_object_id
-group by schema_name(tab.schema_id), tab.name) refs
-on fks.tab = refs.tab
-where fks.fk_cnt + refs.ref_cnt = 0
+SELECT 'No FKs >-' AS refs,
+       fks.tab AS [table],
+       '>- no FKs' AS fks
+FROM
+(
+    SELECT SCHEMA_NAME(tab.schema_id) + '.' + tab.name AS tab,
+           COUNT(fk.name) AS fk_cnt
+    FROM sys.tables AS tab
+        LEFT JOIN sys.foreign_keys AS fk
+            ON tab.object_id = fk.parent_object_id
+    GROUP BY SCHEMA_NAME(tab.schema_id),
+             tab.name
+) fks
+    INNER JOIN
+    (
+        SELECT SCHEMA_NAME(tab.schema_id) + '.' + tab.name AS tab,
+               COUNT(fk.name) ref_cnt
+        FROM sys.tables AS tab
+            LEFT JOIN sys.foreign_keys AS fk
+                ON tab.object_id = fk.referenced_object_id
+        GROUP BY SCHEMA_NAME(tab.schema_id),
+                 tab.name
+    ) refs
+        ON fks.tab = refs.tab
+WHERE fks.fk_cnt + refs.ref_cnt = 0;
