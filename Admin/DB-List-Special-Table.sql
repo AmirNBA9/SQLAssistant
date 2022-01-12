@@ -3,9 +3,9 @@
 لیست دیتابیس‌های دارای یک جدول خاص
 */
 --------------------------------------------------------------------
-select [name] as [database_name] from sys.databases
-where
-case when state_desc = 'ONLINE'
-then object_id(quotename([name]) + '.[product].[products]', 'U')
-end is not null
-order by 1
+SELECT	   [name] AS [database_name]
+  FROM	   sys.databases
+  WHERE	   CASE
+			   WHEN state_desc = 'ONLINE' THEN OBJECT_ID (QUOTENAME ([name]) + '.[product].[products]', 'U')
+		   END IS NOT NULL
+  ORDER BY 1;

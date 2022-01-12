@@ -1,10 +1,12 @@
 --Crash recovery
-Alter database startup
-set emergency
+ALTER DATABASE startup
+	SET EMERGENCY;
 
 --Singel user
-Alter database startup set single_user with rollback immediate
+ALTER DATABASE startup
+	SET SINGLE_USER
+	WITH ROLLBACK IMMEDIATE;
 
 --multi user
-Alter database Startup set multi_user
-
+ALTER DATABASE Startup
+	SET MULTI_USER;

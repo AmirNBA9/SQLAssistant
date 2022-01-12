@@ -12,19 +12,13 @@ o ‘Active’ در صورتی که Constraint فعال باشد.
 o ‘Disabled’ برای Constraintهای غیرفعال
 */
 --------------------------------------------------------------------
-select con.[name] as constraint_name,
-    schema_name(t.schema_id) + '.' + t.[name]  as [table],
-    col.[name] as column_name,
-    con.[definition],
-    case when con.is_disabled = 0 
-        then 'Active' 
-        else 'Disabled' 
-        end as [status]
-from sys.check_constraints con
-    left outer join sys.objects t
-        on con.parent_object_id = t.object_id
-    left outer join sys.all_columns col
-        on con.parent_column_id = col.column_id
-        and con.parent_object_id = col.object_id
-order by con.name
-
+SELECT	   con.[name] AS constraint_name, SCHEMA_NAME (t.schema_id) + '.' + t.[name] AS [table], col.[name] AS column_name, con.[definition], --
+		   CASE
+			   WHEN con.is_disabled = 0 THEN 'Active'
+			   ELSE 'Disabled'
+		   END AS [status]
+  FROM	   sys.check_constraints con
+		   LEFT OUTER JOIN sys.objects t ON con.parent_object_id = t.object_id
+		   LEFT OUTER JOIN sys.all_columns col ON con.parent_column_id = col.column_id
+											  AND con.parent_object_id = col.object_id
+  ORDER BY con.name;
