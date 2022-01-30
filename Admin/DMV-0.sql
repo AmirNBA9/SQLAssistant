@@ -9,4 +9,4 @@ SELECT *
 FROM sys.dm_exec_sessions des
 WHERE des.session_id = @SessionId;
 
--- If find blocking, kill it
+-- If find blocking, kill it -- 
