@@ -11,3 +11,8 @@ EXEC sp_configure 'max degree of parallelism', 16;
 GO  
 RECONFIGURE WITH OVERRIDE;  
 GO
+
+/*
+LRU : Last recently used --> Dirty Page
+    -- Increase RAM
+*/
