@@ -8,7 +8,7 @@ ALTER DATABASE LoyaltyDW
 GO
 
 -- Shrink the truncated log file to 1 MB.
-DBCC SHRINKFILE(LoyaltyDW_log, 1);
+DBCC SHRINKFILE(LoyaltyDW_log /*Logical File name*/, 1 /*SizeInMB*/);
 GO
 
 -- Reset the database recovery model.
