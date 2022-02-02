@@ -42,3 +42,12 @@ where database_id > 4
 order by DataFileSizeMB desc
 
 
+/*And then Check this*/
+
+DBCC OPENTRAN;
+
+DBCC SQLPERF(LOGSPACE);
+
+EXEC sp_replcounters;
+
+
