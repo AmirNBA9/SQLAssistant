@@ -1,0 +1,748 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/11/2020 7:57:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-H77K3E7"
+  DTS:CreatorName="DESKTOP-H77K3E7\OnlineClass"
+  DTS:DTSID="{AF12C317-ABB4-427A-B8E8-5A87C8816710}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{6A1FEA55-1C5D-468F-A372-D8DFAA522C94}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DestinationDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8FA388CB-DA64-44B5-96D6-092893DC71A9}"
+      DTS:ObjectName="LocalHost.DestinationDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DestinationDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.ETL Settings]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{74456ECA-691D-4836-8980-F94164442CC2}"
+      DTS:ObjectName="LocalHost.ETL Settings">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=ETL Settings;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SourceDB1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A1E04D5D-6244-40E0-9391-2DB5CE4BA517}"
+      DTS:ObjectName="LocalHost.SourceDB1">
+      <DTS:PropertyExpression
+        DTS:Name="InitialCatalog">@[User::DBName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SourceDB2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0DBFAA61-564A-43C6-92C9-C755F07B13CE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="BranchID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F98233F0-D3C9-4CAF-9042-87EB39988890}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DBList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{50CFDC9E-8586-4C42-8A38-F7D638CE21D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DBName">
+      <DTS:VariableValue
+        DTS:DataType="8">SourceDB2</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{1328AF52-8F32-45CA-A0B7-192AE428B565}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{C990FEBC-3C49-47C6-92B3-3A30BA9CDCFA}"
+        DTS:ObjectName="{C990FEBC-3C49-47C6-92B3-3A30BA9CDCFA}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::DBList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\ETL People Table"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{1BFE294C-6D6E-4DB5-A127-4830E0A1002D}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ETL People Table"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[People]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DestinationDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DestinationDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Key]"
+                          cachedDataType="i4"
+                          cachedName="Key"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Key]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Key]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Age]"
+                          cachedDataType="r8"
+                          cachedName="Age"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Age]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HairColor]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="HairColor"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HairColor]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HairColor]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CarColor]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CarColor"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarColor]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarColor]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CarMake]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CarMake"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarMake]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarMake]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CarModel]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CarModel"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarModel]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarModel]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Key]"
+                          dataType="wstr"
+                          length="8"
+                          name="Key" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="255"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                          dataType="r8"
+                          name="Age" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HairColor]"
+                          dataType="wstr"
+                          length="255"
+                          name="HairColor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarColor]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarColor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarMake]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarMake" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CarModel]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarModel" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[People]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SourceDB1]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SourceDB1]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Key]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Key]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Key]"
+                          name="Key"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Gender]"
+                          name="Gender"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Age]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Age]"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[Age]"
+                          name="Age"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HairColor]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HairColor]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[HairColor]"
+                          name="HairColor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarColor]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarColor]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarColor]"
+                          name="CarColor"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarMake]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarMake]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarMake]"
+                          name="CarMake"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarModel]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarModel]"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CarModel]"
+                          name="CarModel"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Key]"
+                          dataType="i4"
+                          name="Key" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                          dataType="wstr"
+                          length="255"
+                          name="Gender" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Age]"
+                          dataType="r8"
+                          name="Age" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HairColor]"
+                          dataType="wstr"
+                          length="255"
+                          name="HairColor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarColor]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarColor" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarMake]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarMake" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CarModel]"
+                          dataType="wstr"
+                          length="255"
+                          name="CarModel" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Key]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Key]"
+                          name="Key" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                          name="Gender" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Age]"
+                          dataType="r8"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Age]"
+                          name="Age" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HairColor]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HairColor]"
+                          name="HairColor" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarColor]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarColor]"
+                          name="CarColor" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarMake]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarMake]"
+                          name="CarMake" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarModel]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CarModel]"
+                          name="CarModel" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\ETL People Table.Paths[OLE DB Source Output]"
+                  endId="Package\Foreach Loop Container\ETL People Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Foreach Loop Container\ETL People Table\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{FCE12041-EB61-4DBD-86C7-D711E978EF72}"
+          DTS:ObjectName="{FCE12041-EB61-4DBD-86C7-D711E978EF72}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::BranchID" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6E2335F9-CC15-4452-BA48-6898788540F1}"
+          DTS:ObjectName="{6E2335F9-CC15-4452-BA48-6898788540F1}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::DBName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Database List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0991F51C-BD99-4D5B-812E-AFBA0852B55B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Database List"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{74456ECA-691D-4836-8980-F94164442CC2}"
+          SQLTask:SqlStatementSource="SELECT [BranchID] ,[DatabaseName]&#xA;FROM [dbo].[Databases]&#xA;WHERE DatabaseType = 'Source' AND IsActive = 1"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::DBList" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CDF40514-338C-4397-9F8E-035B4248DD00}"
+      DTS:From="Package\Get Database List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Get Database List"
+          TopLeft="159.285716998334,40.5294123331156" />
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\Foreach Loop Container\ETL People Table"
+          TopLeft="16.0571454602846,36.2705913132863" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,132.8"
+          Size="204.8,176"
+          Id="Package\Foreach Loop Container"
+          TopLeft="136.428573751936,139.94117843321" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="239.457145375135,82.1294123331156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.8117661000949"
+              Start="0,0"
+              End="0,50.3117661000949">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.3117661000949" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\ETL People Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Foreach Loop Container\ETL People Table\OLE DB Source"
+          TopLeft="188.571431782781,99.4117661000948" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Foreach Loop Container\ETL People Table\OLE DB Destination"
+          TopLeft="183.571431697631,236.294120960995" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\ETL People Table.Paths[OLE DB Source Output]"
+          TopLeft="266.071431740206,141.011766100095">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,95.2823548608998"
+              Start="0,0"
+              End="0,87.7823548608998">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,87.7823548608998" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\ETL People Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\ETL People Table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

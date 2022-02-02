@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProjectInfo>
+    <Name>Integration Services Project-990701</Name>
+    <LastWriteTime>2020-11-01T16:23:21.4623306Z</LastWriteTime>
+    <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+  </ProjectInfo>
+  <LastBuildInfos>
+    <ProjectBuildItemInfo>
+      <Name>10)Working with ForEach File Enumerator.dtsx</Name>
+      <LastWriteTime>2020-10-11T14:46:17.6290174Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>01)Control Flow.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.1186631Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>02)Simple ETL.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.1076912Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>03)ETL Demo.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.0937277Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>04)Working with Variables.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.0807609Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>05)Execute SELECT Statement.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.0638093Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>06)Execute SELECT with Full Result.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.0528703Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>07)Working with Containers.dtsx</Name>
+      <LastWriteTime>2020-10-11T15:11:41.0418683Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>08)Working with Transaction.dtsx</Name>
+      <LastWriteTime>2020-10-06T16:57:14.1763166Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>11)Imporing Similar Files into a Table.dtsx</Name>
+      <LastWriteTime>2020-10-11T16:23:26.2551194Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>12)Processing SELECT Full Result.dtsx</Name>
+      <LastWriteTime>2020-10-11T16:44:18.36646Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>13)Importing Data from Similar Tables in Different Databases.dtsx</Name>
+      <LastWriteTime>2020-10-13T15:04:12.5572212Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>09)Working with ForEachLoop Container.dtsx</Name>
+      <LastWriteTime>2020-10-11T14:46:17.6739169Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>14)Tamrin_ImportFiles.dtsx</Name>
+      <LastWriteTime>2020-10-13T14:45:53.1635936Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>15)Working With Script Task.dtsx</Name>
+      <LastWriteTime>2020-10-13T15:57:31.5073101Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>16)Conditional Branching.dtsx</Name>
+      <LastWriteTime>2020-10-13T16:16:15.8190547Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>17)Using OLEDB Command.dtsx</Name>
+      <LastWriteTime>2020-10-13T16:52:21.1626318Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>18)Working with DataViewer.dtsx</Name>
+      <LastWriteTime>2020-10-18T14:17:52.2060376Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>19)Aggregation.dtsx</Name>
+      <LastWriteTime>2020-10-18T14:29:33.6020907Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>20)Combining Data Flows.dtsx</Name>
+      <LastWriteTime>2020-10-18T16:49:16.8116318Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>21)Handling Inferred Records.dtsx</Name>
+      <LastWriteTime>2020-10-20T14:17:03.2878825Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>22)Using BDD.dtsx</Name>
+      <LastWriteTime>2020-10-20T14:22:06.7182706Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>23)Working with Parameters.dtsx</Name>
+      <LastWriteTime>2020-10-20T14:39:29.883442Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>24)Dynamic SQL 1.dtsx</Name>
+      <LastWriteTime>2020-10-20T15:06:52.7644571Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>25)Dynamic SQL 2.dtsx</Name>
+      <LastWriteTime>2020-10-20T15:54:26.6394716Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>26)SlowlyChangingDimension.dtsx</Name>
+      <LastWriteTime>2020-10-27T16:07:40.3857367Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>27) ETL DimProducts.dtsx</Name>
+      <LastWriteTime>2020-11-01T14:24:44.6904508Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>28)CDC Initial Load.dtsx</Name>
+      <LastWriteTime>2020-11-01T15:50:44.2396298Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>29)CDC Incremental Load.dtsx</Name>
+      <LastWriteTime>2020-11-01T16:27:39.6319103Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+  </LastBuildInfos>
+</BuildLog>

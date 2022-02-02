@@ -1,0 +1,804 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2020 6:19:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-H77K3E7"
+  DTS:CreatorName="DESKTOP-H77K3E7\OnlineClass"
+  DTS:DTSID="{90B1D6AA-E96A-44C7-BEBD-C1F367BC47E7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{281687FD-6DD4-41BF-91B2-54594FD4F85C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0D60BEB4-D017-4A04-B846-A962A32DDAD2}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Data\Products.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.ERP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{622F106B-24B5-4C3B-BC0B-D2E40AEB9192}"
+      DTS:ObjectName="LocalHost.ERP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=ERP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import from Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{780AF7DD-BBAB-483E-9493-0A4856ECDECC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import from Excel\ERP Products"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ERP Products"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Products2]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Excel\ERP Products.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.ERP]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.ERP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="r8"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[ProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProductName"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductName]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[SupplierID]"
+                      cachedDataType="r8"
+                      cachedName="SupplierID"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[SupplierID]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[QuantityPerUnit]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="QuantityPerUnit"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[QuantityPerUnit]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[QuantityPerUnit]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsInStock]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[UnitsOnOrder]"
+                      cachedDataType="r8"
+                      cachedName="UnitsOnOrder"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsOnOrder]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[ReorderLevel]"
+                      cachedDataType="r8"
+                      cachedName="ReorderLevel"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ReorderLevel]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[Discontinued]"
+                      cachedDataType="r8"
+                      cachedName="Discontinued"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[Discontinued]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[Discontinued]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                      cachedDataType="r8"
+                      cachedName="CategoryID"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].Columns[DollarStock]"
+                      cachedDataType="r8"
+                      cachedName="DollarStock"
+                      externalMetadataColumnId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[DollarStock]"
+                      lineageId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Output].Columns[DollarStock]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="r8"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      dataType="r8"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      dataType="r8"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitsInStock]"
+                      dataType="r8"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[UnitsOnOrder]"
+                      dataType="r8"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[ReorderLevel]"
+                      dataType="r8"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[Discontinued]"
+                      dataType="r8"
+                      name="Discontinued" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input].ExternalColumns[DollarStock]"
+                      dataType="r8"
+                      name="DollarStock" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Excel\ERP Products.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Excel\ERP Products.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\ERP Products.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Excel\ERP Products.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\ERP Products.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Excel\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Excel\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ProductName]"
+                      length="255"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ProductName]"
+                      name="ProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[SupplierID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[SupplierID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[SupplierID]"
+                      name="SupplierID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[CategoryID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[QuantityPerUnit]"
+                      length="255"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsInStock]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitsInStock]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsInStock]"
+                      name="UnitsInStock"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitsOnOrder]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ReorderLevel]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ReorderLevel]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[ReorderLevel]"
+                      name="ReorderLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[Discontinued]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[Discontinued]"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[Discontinued]"
+                      name="Discontinued"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ProductID]"
+                      dataType="r8"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[SupplierID]"
+                      dataType="r8"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[CategoryID]"
+                      dataType="r8"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      name="QuantityPerUnit" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitsInStock]"
+                      dataType="r8"
+                      name="UnitsInStock" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[UnitsOnOrder]"
+                      dataType="r8"
+                      name="UnitsOnOrder" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[ReorderLevel]"
+                      dataType="r8"
+                      name="ReorderLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].ExternalColumns[Discontinued]"
+                      dataType="r8"
+                      name="Discontinued" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ProductID]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ProductName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ProductName]"
+                      name="ProductName" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[SupplierID]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[SupplierID]"
+                      name="SupplierID" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[CategoryID]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[QuantityPerUnit]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[QuantityPerUnit]"
+                      name="QuantityPerUnit" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitsInStock]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitsInStock]"
+                      name="UnitsInStock" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitsOnOrder]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[UnitsOnOrder]"
+                      name="UnitsOnOrder" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ReorderLevel]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ReorderLevel]"
+                      name="ReorderLevel" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[Discontinued]"
+                      dataType="r8"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[Discontinued]"
+                      name="Discontinued" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="موجودی دلاری انبار اضافه شود"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input].Columns[UnitsInStock]"
+                      cachedDataType="r8"
+                      cachedName="UnitsInStock"
+                      lineageId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsInStock]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Output].Columns[DollarStock]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Output].Columns[DollarStock]"
+                      name="DollarStock"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitPrice]} * #{Package\Import from Excel\Excel Source.Outputs[Excel Source Output].Columns[UnitsInStock]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UnitPrice * UnitsInStock</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import from Excel.Paths[Derived Column Output]"
+              endId="Package\Import from Excel\ERP Products.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Excel.Paths[Excel Source Output]"
+              endId="Package\Import from Excel\موجودی دلاری انبار اضافه شود.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Import from Excel\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE Products Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{129D69C7-E9DD-4F67-8326-D17A274872F7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE Products Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{622F106B-24B5-4C3B-BC0B-D2E40AEB9192}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Products2" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{92B59744-6DDA-4C9E-B784-63AD0E5C7958}"
+      DTS:From="Package\TRUNCATE Products Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import from Excel" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Import from Excel"
+          TopLeft="329.285719893417,159.058825760152" />
+        <NodeLayout
+          Size="203.2,41.6"
+          Id="Package\TRUNCATE Products Table"
+          TopLeft="303.571433741219,29.0588239369508" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="408.028576817318,70.6588239369508">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88.4000018232009"
+              Start="0,0"
+              End="0,80.9000018232009">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.9000018232009" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import from Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Import from Excel\Excel Source"
+          TopLeft="183.571431697631,58.1176478739016" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Import from Excel\ERP Products"
+          TopLeft="182.857145971182,290.588239369508" />
+        <NodeLayout
+          Size="213.6,41.6"
+          Id="Package\Import from Excel\موجودی دلاری انبار اضافه شود"
+          TopLeft="150.000002554485,177.411767194015" />
+        <EdgeLayout
+          Id="Package\Import from Excel.Paths[Excel Source Output]"
+          TopLeft="254.785717126058,99.7176478739016">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,77.6941193201138"
+              Start="0,0"
+              End="0,70.1941193201138">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.1941193201138" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from Excel.Paths[Derived Column Output]"
+          TopLeft="255.028574262833,219.011767194015">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.5764721754927"
+              Start="0,0"
+              End="0,64.0764721754927">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.0764721754927" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Excel\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Excel\ERP Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
