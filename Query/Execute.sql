@@ -1,0 +1,2 @@
+
+EXEC ('SELECT * FROM Products')

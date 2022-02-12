@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS Cat1
+
+SELECT *
+INTO Cat1
+FROM Products
+WHERE CategoryID = 1
