@@ -1,0 +1,13 @@
+/*
+* When we need clear file for delete
+*/
+USE Master
+
+ALTER DATABASE Test SET SINGLE_USER WITH ROLLBACK AFTER 10 SECONDS
+GO
+
+ALTER DATABASE Test SET MULTI_USER
+GO
+
+
+
