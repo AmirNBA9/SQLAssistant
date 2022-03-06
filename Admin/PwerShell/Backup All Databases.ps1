@@ -1,4 +1,4 @@
-﻿Set-Location SQLServer:\SQL\TeacherA-PC\Default\Databases
+﻿Set-Location SQLServer:\SQL\DESKTOP-H77K3E7\Default\Databases
 
 foreach ($db in (get-ChildItem))
 {

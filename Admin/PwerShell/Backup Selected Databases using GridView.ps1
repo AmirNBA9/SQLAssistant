@@ -1,1 +1,1 @@
-﻿Get-SqlDatabase -ServerInstance localhost |  Out-GridView -PassThru | Backup-SqlDatabase -CompressionOption On -Initialize
+﻿Get-SqlDatabase -ServerInstance localhost |  Out-GridView -PassThru | Backup-SqlDatabase -CompressionOption On 

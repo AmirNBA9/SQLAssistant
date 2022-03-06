@@ -1,0 +1,35 @@
+Windows PowserShell ISE (Integrated Scripting Environment) 
+
+Start Windows PowerShell (Run as Administrator)
+
+** Do it once **
+>Set-ExecutionPolicy Unrestricted
+>Install-Module -Name SqlServer -AllowClobber
+>Get-Module SqlServer -ListAvailable
+
+
+# You should import SqlServer cmdlets before being able to work with PowerShell ISE for SQL Server
+# From Ver 3.0 the module is loaded automatically the first time a method of it is invoked.
+>import-module "SqlServer" -DisableNameChecking
+
+
+>dir sqlserver:\sql\DESKTOP-H77K3E7\DEFAULT\Databases
+>dir sqlserver:\sql\DESKTOP-H77K3E7\DEFAULT\Databases\Northwind\Tables
+
+CD sqlserver:\sql\DESKTOP-H77K3E7\DEFAULT\Databases
+
+
+>invoke-sqlcmd -Query "SELECT @@Version" -U sa -P 1234 -Server .
+>invoke-sqlcmd -Database "Northwind" -Query "SELECT CategoryId , CategoryName FROM Categories"
+
+
+Get-Service  *SQL* | Where-Object {$_.status -eq "Stopped"}
+
+# The following commands only works if the Powershell is run as Administrator
+Start-Service -Name "SQLSERVERAgent"
+
+Get-Service  *SQL* | Where-Object {$_.status -eq "Stopped"} | Start-Service
+
+
+
+
