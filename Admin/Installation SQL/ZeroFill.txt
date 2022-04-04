@@ -1,0 +1,9 @@
+- When installation is use developer SQL Server from microsoft sources and don't use other source. Then for production use key from company.
+- Use Last CU (Latest KB) from microsft website
+
+1. Log 100% zero fill
+2. Data with zero fill is option. Recommend use grant zero fill for ...
+3. Just install usable features
+4. Separate drives for installation, Log file and data file
+5. Format drives with allocation unit 64kb for data file and log files.
+---------------------------------------------------------------------------
