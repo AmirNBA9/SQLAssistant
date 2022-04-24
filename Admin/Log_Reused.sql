@@ -1,4 +1,4 @@
-/*
+﻿/*
 Why log is growth up
 0- NOTHING : We don't have problem for growthup log
 1- CHECKPOINT : Checkpoint (When a database has a memory-optimized data filegroup, you should expect to see the log_reuse_wait column indicate checkpoint or xtp_checkpoint)
@@ -11,7 +11,7 @@ Why log is growth up
 8- LOG_SCAN : 
 9- AVAILABILITY_REPLICA : An Always On Availability Groups secondary replica is applying transaction log records of this database to a corresponding secondary database. 
 10-12 For internal use only :
-13- Oldest page :
+13- Oldest page : checkpoint (some page on memory not saved)
 14- Other 
 15- XTP_CHECKPOINT : (When a database has a memory-optimized data filegroup, you should expect to see the log_reuse_wait column indicate checkpoint or xtp_checkpoint)
 16- SLOG_SCAN : sLog scanning when Accelerated Database Recovery is used
@@ -45,3 +45,5 @@ DBCC OPENTRAN;
 DBCC SQLPERF(LOGSPACE);
 
 EXEC sys.sp_replcounters;
+
+/*When checkpoint set , log resuse desc updated*/

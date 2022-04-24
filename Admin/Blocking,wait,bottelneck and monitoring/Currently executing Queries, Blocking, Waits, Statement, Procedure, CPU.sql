@@ -41,3 +41,5 @@ SELECT owt.session_id, owt.exec_context_id, owt.wait_duration_ms, owt.wait_type,
  WHERE es.is_user_process = 1
  ORDER BY owt.session_id, owt.exec_context_id;
 GO
+
+--DBCC INPUTBUFFER (SPID)
