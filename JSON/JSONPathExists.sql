@@ -1,3 +1,5 @@
+/*Working on 2022*/
+
 DECLARE @jsonInfo NVARCHAR(MAX)
 
 SET @jsonInfo=N'{"info":{"address":[{"town":"Paris"},{"town":"London"}]}}';
