@@ -77,12 +77,5 @@ set node = [nonode].node
  
  select node.ToString(), * from [EmployeeTB]
  order by managerid
- 
 
-
- 
-
- yogesh.mehla@gmail.com
- kingconspiracy
- +91-9023262520
 
